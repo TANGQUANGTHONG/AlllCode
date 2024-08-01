@@ -1,0 +1,15 @@
+<h1>Thêm sản phẩm</h1>
+
+<form action="/add-product" method="post">
+    <input placeholder="Nhập tên" name="name" required/>
+    <input placeholder="Nhập giá" name="price" type="number" required/>
+    <input placeholder="Nhập số lượng" name="quantity" type="number" required/>
+    <input placeholder="Hình" name="image" required/>
+    <p>Loại sản phẩm</p>
+    <select name="category" required>
+        {{#each listCate}}
+        <option value="{{_id}}">{{name}}</option>
+        {{/each}}
+    </select>
+    <input type="submit" title="Submit"/>
+</form>

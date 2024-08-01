@@ -1,0 +1,30 @@
+<h1>{{title}}</h1>
+
+<form action="/" method="get">
+  <input type="text" name="search" placeholder="Tìm kiếm sản phẩm" value="{{searchQuery}}"/>
+  <input type="submit" value="Tìm kiếm"/>
+</form>
+
+<a href="/add">Thêm</a>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Tên sản phẩm</th>
+    <th>Giá</th>
+    <th>Loại</th>
+    <th>Thao tác</th>
+  </tr>
+  {{#each list}}
+  <tr>
+    <td>{{_id}}</td>
+    <td>{{name}}</td>
+    <td>{{price}}</td>
+    <td>{{category.name}}</td>
+    <td>
+      <a href="/edit/{{_id}}">Sửa</a> | 
+      <a href="/delete/{{_id}}">Xóa</a>
+    </td>
+  </tr>
+  {{/each}}
+</table>
