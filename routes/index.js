@@ -87,7 +87,7 @@ router.post('/register', async (req, res, next) => {
     res.redirect('/login');
   } catch (error) {
     next(error);
-  }
+  } 
 });
 
 // GET trang đăng nhập
@@ -109,4 +109,7 @@ router.post('/login', async (req, res, next) => {
     next(error);
   }
 });
+
+
+
 module.exports = router;
