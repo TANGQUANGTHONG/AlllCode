@@ -8,6 +8,21 @@ const authMiddleware = require('../other/authMiddleware');
 const { SECRETKEY } = require('../config');
 
 // Đăng ký
+/**
+ * @swagger
+ * /user/register:
+ *   post:
+ *     summary: đăng ký
+ *     responses:
+ *       200:
+ *         description: Đăng ký thành công
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ */
 router.post('/register', async (req, res) => {
     const { UserName, Email, PassWord, Phone, Address } = req.body;
     try {

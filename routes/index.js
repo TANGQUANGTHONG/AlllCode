@@ -2,7 +2,8 @@
 const express = require('express');
 const router = express.Router();
 const modelCate = require('../model/category');
-const modelProd = require('../model/productAPI');
+const modelProd = require('../model/productAPI.js');
+const User = require('../model/user.js')
 
 // GET trang chủ
 router.get('/', async (req, res, next) => {
@@ -72,4 +73,40 @@ router.get('/delete/:id', async (req, res, next) => {
   }
 });
 
+//đăng ký
+router.get('/register', (req, res) => {
+  res.render('register');
+});
+
+// POST đăng ký
+router.post('/register', async (req, res, next) => {
+  try {
+    const { UserName, PassWord } = req.body;
+    const newUser = new User({ UserName, PassWord });
+    await newUser.save();
+    res.redirect('/login');
+  } catch (error) {
+    next(error);
+  }
+});
+
+// GET trang đăng nhập
+router.get('/login', (req, res) => {
+  res.render('login');
+});
+
+// POST đăng nhập
+router.post('/login', async (req, res, next) => {
+  try {
+    const { UserName, PassWord } = req.body;
+    const user = await User.findOne({ UserName });
+    if (user && await bcrypt.compare(PassWord, user.PassWord)) {
+      res.redirect('/');
+    } else {
+      res.redirect('/login');
+    }
+  } catch (error) {
+    next(error);
+  }
+});
 module.exports = router;

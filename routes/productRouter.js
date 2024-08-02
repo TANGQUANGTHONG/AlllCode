@@ -14,11 +14,45 @@ var productsModel = require('../model/product');
  *         content:
  *           application/json:
  *             schema:
+ *               type: object
+ */
+
+/**
+ * @swagger
+ * /product/get_all_products:
+ *   get:
+ *     summary: lấy toàn bộ sản phẩm
+ *     responses:
+ *       200:
+ *         description: lấy toàn bộ sản phẩm thành công
+ *         content:
+ *           application/json:
+ *             schema:
  *               type: array
  *               items:
  *                 type: object
  */
 
+/**
+ * @swagger
+ * /product/get_product_byID/{id}:
+ *   get:
+ *     summary: lấy sản phẩm theo ID
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID của sản phẩm cần lấy
+ *     responses:
+ *       200:
+ *         description: lấy sản phẩm thành công
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ */
 router.post('/add_products', async function(req, res, next){
   const {name, price, Decription, type, size, image} = req.body;
   const newProducts = {name, price, Decription, type, size, image};
@@ -29,6 +63,8 @@ router.post('/add_products', async function(req, res, next){
     res.status(500).json({"status": false, "message":"Thất bại", "error": error});
   }
 })
+
+
 
 router.get('/get_all_products', async function (req, res, next){
   try {
