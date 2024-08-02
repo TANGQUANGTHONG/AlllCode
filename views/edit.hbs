@@ -4,16 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sửa Sản Phẩm</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .form-container {
+            width: 50%;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input[type="text"], input[type="number"], input[type="url"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
     <div class="form-container">
         <h1>Sửa sản phẩm</h1>
         <form action="/edit-product/{{product._id}}" method="post">
-            <input placeholder="Nhập tên" name="name" value="{{product.name}}"/>
-            <input placeholder="Nhập giá" name="price" value="{{product.price}}"/>
-            <input placeholder="Nhập số lượng" name="quantity" value="{{product.quantity}}"/>
-            <input placeholder="Hình" name="image" value="{{product.image}}"/>
+            <input type="text" placeholder="Nhập tên" name="name" value="{{product.name}}"/>
+            <input type="number" placeholder="Nhập giá" name="price" value="{{product.price}}"/>
+            <input type="number" placeholder="Nhập số lượng" name="quantity" value="{{product.quantity}}"/>
+            <input type="url" placeholder="Hình" name="image" value="{{product.image}}"/>
             <p>Loại sản phẩm</p>
             <select name="category">
                 {{#each listCate}}
