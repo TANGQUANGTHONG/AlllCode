@@ -3,7 +3,8 @@ const express = require('express');
 const router = express.Router();
 const modelCate = require('../model/category');
 const modelProd = require('../model/productAPI.js');
-const User = require('../model/user.js')
+const User = require('../model/user.js');
+const bcrypt = require('bcrypt'); 
 
 // GET trang chủ
 router.get('/', async (req, res, next) => {
