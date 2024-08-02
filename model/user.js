@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 //172.16.104.197(fpt)
 const user = new Schema({
     UserName: { type: String, required: true, unique: true },
-    PassWord: { type: String, required: true },
+    PassWord: { type: String, required: false },
     Email: { type: String, required: true, unique: true },
     Phone: { type: String },
     Address: { type: String },
