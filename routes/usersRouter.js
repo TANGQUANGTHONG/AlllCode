@@ -1,28 +1,12 @@
-
 const express = require('express');
 const router = express.Router();
 const UserModel = require('../model/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const authMiddleware = require('../other/authMiddleware');
+const checkToken = require('../other/authMiddleware');
 const { SECRETKEY } = require('../config');
+const { config } = require('dotenv');
 
-// Đăng ký
-/**
- * @swagger
- * /user/register:
- *   post:
- *     summary: đăng ký
- *     responses:
- *       200:
- *         description: Đăng ký thành công
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 type: object
- */
 router.post('/register', async (req, res) => {
     const { UserName, Email, PassWord, Phone, Address } = req.body;
     try {
@@ -47,61 +31,50 @@ router.post('/login', async (req, res) => {
     const { Email, PassWord } = req.body;
     try {
         const user = await UserModel.findOne({ Email });
-        if (!user) {
-            return res.status(400).json({ message: 'Email hoặc mật khẩu không đúng' });
+        if (user) {
+            const token = jwt.sign({ userId: user._id }, SECRETKEY, { expiresIn: '1h' });
+            return res.status(200).json({ message: 'thành công', token: token });
         }
 
         const isMatch = await bcrypt.compare(PassWord, user.PassWord);
         if (!isMatch) {
             return res.status(400).json({ message: 'Email hoặc mật khẩu không đúng' });
         }
-
-        const token = jwt.sign({ userId: user.Email }, SECRETKEY, { expiresIn: '1h' });
-
-        res.status(200).json({ token });
     } catch (error) {
         res.status(500).json({ message: 'Lỗi khi đăng nhập', error: error.message });
     }
 });
 
 
-router.get('/profile/:id', async (req, res) => {
-    const { id } = req.params;
-
+// routes/user.js (hoặc tên file router của bạn)
+router.get('/profile', checkToken, async (req, res) => {
     try {
-        const user = await UserModel.findById(id); 
-        if (user) {
-            res.status(200).json({
-                UserName: user.UserName,
-                Email: user.Email,
-                Phone: user.Phone,
-                Address: user.Address
-            });
-        } else {
-            res.status(404).json({ message: 'Người dùng không tồn tại' });
-        }
+        const user = req.user; // Lấy thông tin người dùng từ req.user do middleware gắn vào
+        res.status(200).json({
+            UserName: user.UserName,
+            Email: user.Email,
+            Phone: user.Phone,
+            Address: user.Address
+        });
     } catch (error) {
         res.status(500).json({ message: 'Lỗi khi lấy thông tin người dùng', error: error.message });
     }
 });
 
 
-// Cập nhật thông tin người dùng
-router.put('/edit_profile/:id', async (req, res) => {
-    const { id } = req.params; // Lấy id từ URL params
-    const { UserName, Email, PassWord } = req.body;
+
+// Cập nhật thông tin người dùng (có bảo mật)
+router.put('/edit_profile', checkToken, async (req, res) => {
+    const { UserName, Email, PassWord, Phone, Address } = req.body;
 
     try {
-        const user = await UserModel.findById(id);
-        if (!user) {
-            return res.status(404).json({ message: 'Người dùng không tồn tại' });
-        }
+        const user = req.user; // Lấy thông tin người dùng từ req.user do middleware gắn vào
 
-        // Cập nhật thông tin người dùng
         user.UserName = UserName || user.UserName;
         user.Email = Email || user.Email;
+        user.Phone = Phone || user.Phone;
+        user.Address = Address || user.Address;
 
-        // Nếu có mật khẩu mới, mã hóa và cập nhật
         if (PassWord) {
             user.PassWord = await bcrypt.hash(PassWord, 10);
         }
@@ -112,12 +85,11 @@ router.put('/edit_profile/:id', async (req, res) => {
             message: 'Thông tin người dùng đã được cập nhật',
             UserName: user.UserName,
             Email: user.Email,
+            Phone: user.Phone,
+            Address: user.Address
         });
     } catch (error) {
         res.status(500).json({ message: 'Lỗi khi cập nhật thông tin người dùng', error: error.message });
     }
 });
-
-
-
 module.exports = router;

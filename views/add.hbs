@@ -1,15 +1,96 @@
-<h1>Thêm sản phẩm</h1>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm Sản Phẩm</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-<form action="/add-product" method="post">
-    <input placeholder="Nhập tên" name="name" required/>
-    <input placeholder="Nhập giá" name="price" type="number" required/>
-    <input placeholder="Nhập số lượng" name="quantity" type="number" required/>
-    <input placeholder="Hình" name="image" required/>
-    <p>Loại sản phẩm</p>
-    <select name="category" required>
-        {{#each listCate}}
-        <option value="{{_id}}">{{name}}</option>
-        {{/each}}
-    </select>
-    <input type="submit" title="Submit"/>
-</form>
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            box-sizing: border-box;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input, select {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="number"] {
+            width: 100%;
+        }
+
+        select {
+            width: 100%;
+        }
+
+        input[type="submit"] {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        p {
+            font-size: 16px;
+            margin: 0 0 10px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Thêm sản phẩm</h1>
+        <form action="/add-product" method="post">
+            <input placeholder="Nhập tên" name="name" required/>
+            <input placeholder="Nhập giá" name="price" type="number" required/>
+            <input placeholder="Nhập số lượng" name="quantity" type="number" required/>
+            <input placeholder="Hình" name="image" required/>
+            <p>Loại sản phẩm</p>
+            <select name="category" required>
+                {{#each listCate}}
+                <option value="{{_id}}">{{name}}</option>
+                {{/each}}
+            </select>
+            <input type="submit" title="Submit"/>
+        </form>
+    </div>
+</body>
+</html>

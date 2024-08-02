@@ -1,15 +1,27 @@
-<h1>Sửa sản phẩm</h1>
-
-<form action="/edit-product/{{product._id}}" method="post">
-  <input placeholder="Nhập tên" name="name" value="{{product.name}}"/>
-  <input placeholder="Nhập giá" name="price" value="{{product.price}}"/>
-  <input placeholder="Nhập số lượng" name="quantity" value="{{product.quantity}}"/>
-  <input placeholder="Hình" name="image" value="{{product.image}}"/>
-  <p>Loại sản phẩm</p>
-  <select name="category">
-    {{#each listCate}}
-    <option value="{{_id}}" {{#if (eq _id ../product.category)}}selected{{/if}}>{{name}}</option>
-    {{/each}}
-  </select>
-  <input type="submit" title="Submit"/>
-</form>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sửa Sản Phẩm</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Sửa sản phẩm</h1>
+        <form action="/edit-product/{{product._id}}" method="post">
+            <input placeholder="Nhập tên" name="name" value="{{product.name}}"/>
+            <input placeholder="Nhập giá" name="price" value="{{product.price}}"/>
+            <input placeholder="Nhập số lượng" name="quantity" value="{{product.quantity}}"/>
+            <input placeholder="Hình" name="image" value="{{product.image}}"/>
+            <p>Loại sản phẩm</p>
+            <select name="category">
+                {{#each listCate}}
+                <option value="{{_id}}" {{#if (eq _id ../product.category)}}selected{{/if}}>{{name}}</option>
+                {{/each}}
+            </select>
+            <input type="submit" title="Submit"/>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,20 +1,30 @@
+// authMiddleware.js
 const jwt = require('jsonwebtoken');
-const { SECRETKEY } = require('../config');
+const config = require('../config');
+const UserModel = require('../model/user'); // Thêm model người dùng
 
-const authMiddleware = (req, res, next) => {
-    const token = req.header('Authorization')?.replace('Bearer ', '');
+const checkToken = async (req, res, next) => {
+    const authHeader = req.header("Authorization");
     
-    if (!token) {
-        return res.status(401).json({ message: 'Không có quyền truy cập' });
+    if (!authHeader) {
+        return res.status(401).json({ "status": 401, "message": "Token không được cung cấp" });
     }
 
+    const token = authHeader.split(' ')[1];
+    
     try {
-        const decoded = jwt.verify(token, SECRETKEY);
-        req.user = decoded;
+        const decoded = jwt.verify(token, config.SECRETKEY);
+        const user = await UserModel.findById(decoded.userId);
+        
+        if (!user) {
+            return res.status(404).json({ "message": "Người dùng không tồn tại" });
+        }
+
+        req.user = user; // Gắn thông tin người dùng vào req
         next();
-    } catch (error) {
-        res.status(401).json({ message: 'Token không hợp lệ' });
+    } catch (err) {
+        res.status(403).json({ "err": err });
     }
 };
 
-module.exports = authMiddleware;
+module.exports = checkToken;
