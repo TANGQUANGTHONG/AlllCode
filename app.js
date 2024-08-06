@@ -61,7 +61,7 @@ app.use('/', indexRouter);
 // Kết nối MongoDB
 //'mongodb://127.0.0.1:27017/project_cro102'
 //'mongodb+srv://Quangthong:Ec2zy4nb.zhX93z@cluster0.cypkh4s.mongodb.net/project_cro102' public
-mongoose.connect('mongodb://127.0.0.1:27017/project_cro102', {
+mongoose.connect('mongodb+srv://Quangthong:Ec2zy4nb.zhX93z@cluster0.cypkh4s.mongodb.net/project_cro102', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
