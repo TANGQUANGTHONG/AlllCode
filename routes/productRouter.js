@@ -7,7 +7,6 @@ var productsModel = require('../model/product');
  * /product/add_products:
  *   post:
  *     summary: Thêm sản phẩm mới
- *     description: Thêm một sản phẩm mới vào hệ thống.
  *     requestBody:
  *       required: true
  *       content:
@@ -17,25 +16,30 @@ var productsModel = require('../model/product');
  *             properties:
  *               name:
  *                 type: string
- *                 description: Tên của sản phẩm.
- *                 example: nước
+ *                 description: Tên của sản phẩm
  *               price:
  *                 type: number
  *                 format: float
- *                 description: Giá của sản phẩm.
- *                 example: 199000
+ *                 description: Giá của sản phẩm
  *               Decription:
  *                 type: string
- *                 description: Mô tả chi tiết về sản phẩm.
- *                 example: đã khát
+ *                 description: Mô tả của sản phẩm
  *               type:
  *                 type: string
- *                 description: Danh mục sản phẩm.
- *                 example: đồ ước
+ *                 description: Loại sản phẩm
+ *               size:
+ *                 type: string
+ *                 description: Kích cỡ của sản phẩm
  *               image:
  *                 type: string
- *                 description: URL hình ảnh sản phẩm.
- *                 example: https://example.com/image.jpg
+ *                 description: URL hình ảnh của sản phẩm
+ *             required:
+ *               - name
+ *               - price
+ *               - Decription
+ *               - type
+ *               - size
+ *               - image
  *     responses:
  *       201:
  *         description: Thêm sản phẩm thành công
@@ -44,40 +48,27 @@ var productsModel = require('../model/product');
  *             schema:
  *               type: object
  *               properties:
- *                 status:
- *                   type: boolean
- *                   description: Trạng thái thành công.
- *                   example: true
- *                 product:
- *                   type: object
- *                   properties:
- *                     _id:
- *                       type: string
- *                       description: ID của sản phẩm mới.
- *                       example: "641e9b0f1d1d8c2a1f4e9b02"
- *                     name:
- *                       type: string
- *                       description: Tên của sản phẩm.
- *                       example: nước
- *                     price:
- *                       type: number
- *                       format: float
- *                       description: Giá của sản phẩm.
- *                       example: 199000
- *                     Decription:
- *                       type: string
- *                       description: Mô tả chi tiết về sản phẩm.
- *                       example:ngon
- *                     type:
- *                       type: string
- *                       description: Danh mục sản phẩm.
- *                       example: nước
- *                     image:
- *                       type: string
- *                       description: URL hình ảnh sản phẩm.
- *                       example: https://example.com/image.jpg
+ *                 name:
+ *                   type: string
+ *                   description: Tên của sản phẩm
+ *                 price:
+ *                   type: number
+ *                   format: float
+ *                   description: Giá của sản phẩm
+ *                 Decription:
+ *                   type: string
+ *                   description: Mô tả của sản phẩm
+ *                 type:
+ *                   type: string
+ *                   description: Loại sản phẩm
+ *                 size:
+ *                   type: string
+ *                   description: Kích cỡ của sản phẩm
+ *                 image:
+ *                   type: string
+ *                   description: URL hình ảnh của sản phẩm
  *       500:
- *         description: Lỗi máy chủ nội bộ
+ *         description: Lỗi server
  *         content:
  *           application/json:
  *             schema:
@@ -85,16 +76,15 @@ var productsModel = require('../model/product');
  *               properties:
  *                 status:
  *                   type: boolean
- *                   description: Trạng thái thất bại.
- *                   example: false
+ *                   description: Trạng thái của phản hồi
  *                 message:
  *                   type: string
- *                   description: Thông báo lỗi.
- *                   example: Thất bại
+ *                   description: Thông báo lỗi
  *                 error:
- *                   type: object
- *                   description: Chi tiết lỗi.
+ *                   type: string
+ *                   description: Thông tin lỗi
  */
+
 
 /**
  * @swagger
