@@ -24,6 +24,24 @@ var productsModel = require('../model/product');
  *                 format: float
  *                 description: Giá của sản phẩm.
  *                 example: 199000
+ *               Decription:
+ *                 type: string
+ *                 description: Mô tả chi tiết về sản phẩm.
+ *                 example: Áo thun cotton 100%, thoáng mát và dễ chịu.
+ *               type:
+ *                 type: string
+ *                 description: Danh mục sản phẩm.
+ *                 example: Thời trang
+ *               size:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                 description: Danh sách kích thước của sản phẩm.
+ *                 example: ["S", "M", "L"]
+ *               image:
+ *                 type: string
+ *                 description: URL hình ảnh sản phẩm.
+ *                 example: https://example.com/image.jpg
  *     responses:
  *       201:
  *         description: Thêm sản phẩm thành công
@@ -52,6 +70,18 @@ var productsModel = require('../model/product');
  *                       format: float
  *                       description: Giá của sản phẩm.
  *                       example: 199000
+ *                     Decription:
+ *                       type: string
+ *                       description: Mô tả chi tiết về sản phẩm.
+ *                       example: Áo thun cotton 100%, thoáng mát và dễ chịu.
+ *                     type:
+ *                       type: string
+ *                       description: Danh mục sản phẩm.
+ *                       example: Thời trang
+ *                     image:
+ *                       type: string
+ *                       description: URL hình ảnh sản phẩm.
+ *                       example: https://example.com/image.jpg
  *       500:
  *         description: Lỗi máy chủ nội bộ
  *         content:
