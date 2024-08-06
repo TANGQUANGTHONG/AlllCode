@@ -54,9 +54,28 @@ var productsModel = require('../model/product');
  *                   type: string
  *                   description: URL hình ảnh sản phẩm
  *       400:
- *         description: Yêu cầu không hợp lệ (ví dụ: thiếu trường bắt buộc)
+ *         description: Yêu cầu không hợp lệ
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Thông báo lỗi khi yêu cầu không hợp lệ
  *       500:
  *         description: Lỗi server
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Thông báo lỗi khi gặp sự cố
+ *                 error:
+ *                   type: string
+ *                   description: Thông tin lỗi
  */
 
 
