@@ -9,4 +9,4 @@ var productSchema = new Schema({
   category: { type: Schema.Types.ObjectId, ref: 'Category', required: true },
 });
 
-module.exports = mongoose.model('ProductAPI', productSchema);
+module.exports = mongoose.model('Product', productSchema);

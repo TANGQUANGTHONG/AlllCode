@@ -59,7 +59,9 @@ app.use('/cart', CartRouter);
 app.use('/', indexRouter);
 
 // Kết nối MongoDB
-mongoose.connect('mongodb+srv://Quangthong:Ec2zy4nb.zhX93z@cluster0.cypkh4s.mongodb.net/project_cro102', {
+//'mongodb://127.0.0.1:27017/project_cro102'
+//'mongodb+srv://Quangthong:Ec2zy4nb.zhX93z@cluster0.cypkh4s.mongodb.net/project_cro102' public
+mongoose.connect('mongodb://127.0.0.1:27017/project_cro102', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })

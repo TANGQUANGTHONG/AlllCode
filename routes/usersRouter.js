@@ -31,19 +31,22 @@ router.post('/login', async (req, res) => {
     const { Email, PassWord } = req.body;
     try {
         const user = await UserModel.findOne({ Email });
-        if (user) {
-            const token = jwt.sign({ userId: user._id }, SECRETKEY, { expiresIn: '1h' });
-            return res.status(200).json({ message: 'thành công', token: token });
+        if (!user) {
+            return res.status(400).json({ message: 'Email không tồn tại' });
         }
 
         const isMatch = await bcrypt.compare(PassWord, user.PassWord);
         if (!isMatch) {
-            return res.status(400).json({ message: 'Email hoặc mật khẩu không đúng' });
+            return res.status(400).json({ message: 'Mật khẩu không đúng' });
         }
+
+        const token = jwt.sign({ userId: user._id }, SECRETKEY, { expiresIn: '1h' });
+        return res.status(200).json({ message: 'Thành công', token: token });
     } catch (error) {
         res.status(500).json({ message: 'Lỗi khi đăng nhập', error: error.message });
     }
 });
+
 
 
 // routes/user.js (hoặc tên file router của bạn)
