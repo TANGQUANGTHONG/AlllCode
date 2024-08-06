@@ -4,7 +4,7 @@ var productsModel = require('../model/product');
 
 /**
  * @swagger
- * /product//add_products:
+ * /product/add_products:
  *   post:
  *     summary: thêm loại sản phẩm
  *     requestBody:
