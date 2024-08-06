@@ -6,7 +6,7 @@ var productsModel = require('../model/product');
  * @swagger
  * /product/add_products:
  *   post:
- *     summary: thêm loại sản phẩm
+ *     summary: Thêm sản phẩm mới
  *     requestBody:
  *       required: true
  *       content:
@@ -15,13 +15,30 @@ var productsModel = require('../model/product');
  *             type: object
  *             required:
  *               - name
+ *               - category
+ *               - quantity
+ *               - price
+ *               - image
  *             properties:
  *               name:
  *                 type: string
- *                 description: tên loại
+ *                 description: Tên sản phẩm
+ *               category:
+ *                 type: string
+ *                 description: Danh mục sản phẩm
+ *               quantity:
+ *                 type: integer
+ *                 description: Số lượng sản phẩm
+ *               price:
+ *                 type: number
+ *                 format: float
+ *                 description: Giá sản phẩm
+ *               image:
+ *                 type: string
+ *                 description: URL hình ảnh sản phẩm
  *     responses:
- *       200:
- *         description: Trả về loại
+ *       201:
+ *         description: Thêm sản phẩm thành công
  *         content:
  *           application/json:
  *             schema:
@@ -30,13 +47,27 @@ var productsModel = require('../model/product');
  *                 product:
  *                   type: object
  *                   properties:
- *                    name:
- *                      type: string
- *                      description: tên loại
+ *                     name:
+ *                       type: string
+ *                       description: Tên sản phẩm
+ *                     category:
+ *                       type: string
+ *                       description: Danh mục sản phẩm
+ *                     quantity:
+ *                       type: integer
+ *                       description: Số lượng sản phẩm
+ *                     price:
+ *                       type: number
+ *                       format: float
+ *                       description: Giá sản phẩm
+ *                     image:
+ *                       type: string
+ *                       description: URL hình ảnh sản phẩm
+ *       400:
+ *         description: Yêu cầu không hợp lệ
  *       500:
  *         description: Lỗi server
  */
-
 
 
 
