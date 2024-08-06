@@ -38,6 +38,8 @@ var productsModel = require('../model/product');
  */
 
 
+
+
 /**
  * @swagger
  * /product/get_all_products:

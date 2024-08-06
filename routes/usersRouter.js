@@ -7,6 +7,142 @@ const checkToken = require('../other/authMiddleware');
 const { SECRETKEY } = require('../config');
 const { config } = require('dotenv');
 
+
+/**
+ * @swagger
+ * /register:
+ *   post:
+ *     summary: Đăng ký tài khoản mới
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               UserName:
+ *                 type: string
+ *                 description: Tên của người dùng
+ *               Email:
+ *                 type: string
+ *                 format: email
+ *                 description: Địa chỉ email của người dùng
+ *               PassWord:
+ *                 type: string
+ *                 format: password
+ *                 description: Mật khẩu của người dùng
+ *               Phone:
+ *                 type: string
+ *                 description: Số điện thoại của người dùng
+ *               Address:
+ *                 type: string
+ *                 description: Địa chỉ của người dùng
+ *             required:
+ *               - UserName
+ *               - Email
+ *               - PassWord
+ *               - Phone
+ *               - Address
+ *     responses:
+ *       201:
+ *         description: Đăng ký thành công
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 token:
+ *                   type: string
+ *                   description: Token xác thực JWT được cấp sau khi đăng ký thành công
+ *       400:
+ *         description: Email đã tồn tại
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Thông báo lỗi khi email đã tồn tại
+ *       500:
+ *         description: Lỗi server
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Thông báo lỗi khi gặp sự cố
+ *                 error:
+ *                   type: string
+ *                   description: Thông tin lỗi
+ */
+
+/**
+ * @swagger
+ * /login:
+ *   post:
+ *     summary: Đăng nhập vào hệ thống
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               Email:
+ *                 type: string
+ *                 format: email
+ *                 description: Địa chỉ email của người dùng
+ *               PassWord:
+ *                 type: string
+ *                 format: password
+ *                 description: Mật khẩu của người dùng
+ *             required:
+ *               - Email
+ *               - PassWord
+ *     responses:
+ *       200:
+ *         description: Đăng nhập thành công
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Thông báo thành công khi đăng nhập
+ *                 token:
+ *                   type: string
+ *                   description: Token xác thực JWT được cấp sau khi đăng nhập thành công
+ *       400:
+ *         description: Email không tồn tại hoặc mật khẩu không đúng
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Thông báo lỗi khi email không tồn tại hoặc mật khẩu không đúng
+ *       500:
+ *         description: Lỗi server
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Thông báo lỗi khi gặp sự cố
+ *                 error:
+ *                   type: string
+ *                   description: Thông tin lỗi
+ */
+
+
+
 router.post('/register', async (req, res) => {
     const { UserName, Email, PassWord, Phone, Address } = req.body;
     try {
