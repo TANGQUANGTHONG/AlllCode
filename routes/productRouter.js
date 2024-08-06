@@ -4,85 +4,37 @@ var productsModel = require('../model/product');
 
 /**
  * @swagger
- * /product/add_products:
+ * /product//add_products:
  *   post:
- *     summary: Thêm sản phẩm mới
+ *     summary: thêm loại sản phẩm
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - name
  *             properties:
  *               name:
  *                 type: string
- *                 description: Tên của sản phẩm
- *               price:
- *                 type: number
- *                 format: float
- *                 description: Giá của sản phẩm
- *               Decription:
- *                 type: string
- *                 description: Mô tả của sản phẩm
- *               type:
- *                 type: string
- *                 description: Loại sản phẩm
- *               size:
- *                 type: string
- *                 description: Kích cỡ của sản phẩm
- *               image:
- *                 type: string
- *                 description: URL hình ảnh của sản phẩm
- *             required:
- *               - name
- *               - price
- *               - Decription
- *               - type
- *               - size
- *               - image
+ *                 description: tên loại
  *     responses:
- *       201:
- *         description: Thêm sản phẩm thành công
+ *       200:
+ *         description: Trả về loại
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
- *                 name:
- *                   type: string
- *                   description: Tên của sản phẩm
- *                 price:
- *                   type: number
- *                   format: float
- *                   description: Giá của sản phẩm
- *                 Decription:
- *                   type: string
- *                   description: Mô tả của sản phẩm
- *                 type:
- *                   type: string
- *                   description: Loại sản phẩm
- *                 size:
- *                   type: string
- *                   description: Kích cỡ của sản phẩm
- *                 image:
- *                   type: string
- *                   description: URL hình ảnh của sản phẩm
+ *                 product:
+ *                   type: object
+ *                   properties:
+ *                    name:
+ *                      type: string
+ *                      description: tên loại
  *       500:
  *         description: Lỗi server
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: boolean
- *                   description: Trạng thái của phản hồi
- *                 message:
- *                   type: string
- *                   description: Thông báo lỗi
- *                 error:
- *                   type: string
- *                   description: Thông tin lỗi
  */
 
 
