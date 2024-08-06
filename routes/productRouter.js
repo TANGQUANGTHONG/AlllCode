@@ -18,7 +18,7 @@ var productsModel = require('../model/product');
  *               name:
  *                 type: string
  *                 description: Tên của sản phẩm.
- *                 example: Áo thun
+ *                 example: nước
  *               price:
  *                 type: number
  *                 format: float
@@ -27,17 +27,11 @@ var productsModel = require('../model/product');
  *               Decription:
  *                 type: string
  *                 description: Mô tả chi tiết về sản phẩm.
- *                 example: Áo thun cotton 100%, thoáng mát và dễ chịu.
+ *                 example: đã khát
  *               type:
  *                 type: string
  *                 description: Danh mục sản phẩm.
- *                 example: Thời trang
- *               size:
- *                 type: array
- *                 items:
- *                   type: string
- *                 description: Danh sách kích thước của sản phẩm.
- *                 example: ["S", "M", "L"]
+ *                 example: đồ ước
  *               image:
  *                 type: string
  *                 description: URL hình ảnh sản phẩm.
@@ -64,7 +58,7 @@ var productsModel = require('../model/product');
  *                     name:
  *                       type: string
  *                       description: Tên của sản phẩm.
- *                       example: Áo thun
+ *                       example: nước
  *                     price:
  *                       type: number
  *                       format: float
@@ -73,11 +67,11 @@ var productsModel = require('../model/product');
  *                     Decription:
  *                       type: string
  *                       description: Mô tả chi tiết về sản phẩm.
- *                       example: Áo thun cotton 100%, thoáng mát và dễ chịu.
+ *                       example:ngon
  *                     type:
  *                       type: string
  *                       description: Danh mục sản phẩm.
- *                       example: Thời trang
+ *                       example: nước
  *                     image:
  *                       type: string
  *                       description: URL hình ảnh sản phẩm.
