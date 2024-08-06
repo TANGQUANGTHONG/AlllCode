@@ -15,24 +15,20 @@ var productsModel = require('../model/product');
  *             type: object
  *             required:
  *               - name
- *               - category
- *               - quantity
  *               - price
+ *               - quantity
  *               - image
  *             properties:
  *               name:
  *                 type: string
  *                 description: Tên sản phẩm
- *               category:
- *                 type: string
- *                 description: Danh mục sản phẩm
- *               quantity:
- *                 type: integer
- *                 description: Số lượng sản phẩm
  *               price:
  *                 type: number
  *                 format: float
  *                 description: Giá sản phẩm
+ *               quantity:
+ *                 type: integer
+ *                 description: Số lượng sản phẩm
  *               image:
  *                 type: string
  *                 description: URL hình ảnh sản phẩm
@@ -44,31 +40,25 @@ var productsModel = require('../model/product');
  *             schema:
  *               type: object
  *               properties:
- *                 product:
- *                   type: object
- *                   properties:
- *                     name:
- *                       type: string
- *                       description: Tên sản phẩm
- *                     category:
- *                       type: string
- *                       description: Danh mục sản phẩm
- *                     quantity:
- *                       type: integer
- *                       description: Số lượng sản phẩm
- *                     price:
- *                       type: number
- *                       format: float
- *                       description: Giá sản phẩm
- *                     image:
- *                       type: string
- *                       description: URL hình ảnh sản phẩm
+ *                 name:
+ *                   type: string
+ *                   description: Tên sản phẩm
+ *                 price:
+ *                   type: number
+ *                   format: float
+ *                   description: Giá sản phẩm
+ *                 quantity:
+ *                   type: integer
+ *                   description: Số lượng sản phẩm
+ *                 image:
+ *                   type: string
+ *                   description: URL hình ảnh sản phẩm
  *       400:
- *         description: Yêu cầu không hợp lệ
+ *         description: Yêu cầu không hợp lệ (ví dụ: thiếu trường bắt buộc)
  *       500:
  *         description: Lỗi server
  */
-
+ 
 
 
 /**
@@ -108,8 +98,8 @@ var productsModel = require('../model/product');
  *               type: object
  */
 router.post('/add_products', async function(req, res, next){
-  const {name, price, Decription, type, size, image} = req.body;
-  const newProducts = {name, price, Decription, type, size, image};
+  const {name, price, quantity, image} = req.body;
+  const newProducts = {name, price, quantity, image};
   try {
     const creatProducts = await productsModel.create(newProducts);
     res.status(201).json(creatProducts)
