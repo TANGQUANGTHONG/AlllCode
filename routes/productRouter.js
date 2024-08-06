@@ -2,19 +2,74 @@ var express = require('express');
 var router = express.Router();
 var productsModel = require('../model/product');
 
-
 /**
  * @swagger
  * /product/add_products:
  *   post:
- *     summary: thêm sản phẩm mới
+ *     summary: Thêm sản phẩm mới
+ *     description: Thêm một sản phẩm mới vào hệ thống.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: Tên của sản phẩm.
+ *                 example: Áo thun
+ *               price:
+ *                 type: number
+ *                 format: float
+ *                 description: Giá của sản phẩm.
+ *                 example: 199000
  *     responses:
- *       200:
- *         description: thêm sản phẩm thành công
+ *       201:
+ *         description: Thêm sản phẩm thành công
  *         content:
  *           application/json:
  *             schema:
  *               type: object
+ *               properties:
+ *                 status:
+ *                   type: boolean
+ *                   description: Trạng thái thành công.
+ *                   example: true
+ *                 product:
+ *                   type: object
+ *                   properties:
+ *                     _id:
+ *                       type: string
+ *                       description: ID của sản phẩm mới.
+ *                       example: "641e9b0f1d1d8c2a1f4e9b02"
+ *                     name:
+ *                       type: string
+ *                       description: Tên của sản phẩm.
+ *                       example: Áo thun
+ *                     price:
+ *                       type: number
+ *                       format: float
+ *                       description: Giá của sản phẩm.
+ *                       example: 199000
+ *       500:
+ *         description: Lỗi máy chủ nội bộ
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: boolean
+ *                   description: Trạng thái thất bại.
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   description: Thông báo lỗi.
+ *                   example: Thất bại
+ *                 error:
+ *                   type: object
+ *                   description: Chi tiết lỗi.
  */
 
 /**
