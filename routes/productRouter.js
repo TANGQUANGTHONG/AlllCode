@@ -13,11 +13,6 @@ var productsModel = require('../model/product');
  *         application/json:
  *           schema:
  *             type: object
- *             required:
- *               - name
- *               - price
- *               - quantity
- *               - image
  *             properties:
  *               name:
  *                 type: string
@@ -32,6 +27,11 @@ var productsModel = require('../model/product');
  *               image:
  *                 type: string
  *                 description: URL hình ảnh sản phẩm
+ *             required:
+ *               - name
+ *               - price
+ *               - quantity
+ *               - image
  *     responses:
  *       201:
  *         description: Thêm sản phẩm thành công
@@ -58,7 +58,6 @@ var productsModel = require('../model/product');
  *       500:
  *         description: Lỗi server
  */
- 
 
 
 /**

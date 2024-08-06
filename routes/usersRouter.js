@@ -38,11 +38,8 @@ const { config } = require('dotenv');
  *                 type: string
  *                 description: Địa chỉ của người dùng
  *             required:
- *               - UserName
  *               - Email
  *               - PassWord
- *               - Phone
- *               - Address
  *     responses:
  *       201:
  *         description: Đăng ký thành công
