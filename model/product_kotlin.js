@@ -1,24 +1,22 @@
 const mongoose = require('mongoose');
 
-// Định nghĩa schema cho sản phẩm
 const productSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true,
-        trim: true, // Loại bỏ khoảng trắng ở đầu và cuối
+        required: true
     },
     price: {
         type: Number,
-        required: true,
-        min: 0, // Giá không được nhỏ hơn 0
+        required: true
     },
     imageUrl: {
         type: String,
-        required: true,
+        required: true
     },
+    type: { // Thêm trường loại sản phẩm
+        type: String,
+        required: true
+    }
 });
 
-// Tạo model từ schema
-const Product = mongoose.model('Product', productSchema);
-
-module.exports = Product;
+module.exports = mongoose.model('Product', productSchema);
