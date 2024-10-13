@@ -19,7 +19,6 @@ router.post('/register', async (req, res) => {
         res.status(500).json({ message: 'Lỗi đăng ký', error: error.message });
     }
 });
-
 router.post('/login', async (req, res) => {
     const { Username, Password } = req.body;
     try {
@@ -27,8 +26,8 @@ router.post('/login', async (req, res) => {
         if (!userKotlin) {
             return res.status(400).json({ message: 'Tài khoản không tồn tại' });
         }
-        const isMatch = await bcrypt.compare(Password, userKotlin.Password);
-        if (!isMatch) {
+        // So sánh mật khẩu trực tiếp
+        if (Password !== userKotlin.Password) {
             return res.status(400).json({ message: 'Mật khẩu không đúng' });
         }
         return res.status(200).json({ message: 'Đăng nhập thành công' });
@@ -36,6 +35,7 @@ router.post('/login', async (req, res) => {
         res.status(500).json({ message: 'Lỗi đăng nhập', error: error.message });
     }
 });
+
 
 
 module.exports = router;
