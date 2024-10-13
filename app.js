@@ -7,9 +7,11 @@ var logger = require('morgan');
 
 const mongoose = require('mongoose');
 require('./model/user_asm_kotlin')
+require('./model/product_kotlin')
 
 
  var user_asm_kotlinRouter = require('./routes/user_asm_kotlinRouter');
+ var product_kotlinRouter = require('./routes/product_kotlin');
 
 var app = express();
 
@@ -46,6 +48,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/userKotlin', user_asm_kotlinRouter);
+app.use('/userKotlin', product_kotlinRouter);
 
 // Kết nối MongoDB
 //'mongodb://127.0.0.1:27017/project_cro102'
