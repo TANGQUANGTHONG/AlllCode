@@ -1,6 +1,5 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const Product = require('./models/Product'); // Đảm bảo rằng đường dẫn này đúng với mô hình của bạn
+const Product = require('../model/product_kotlin'); // Đường dẫn phải đúng
 
 const router = express.Router();
 
