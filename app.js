@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 require('./model/user_asm_kotlin')
 
 
- var user_asm_kotlinRouter = require('./routes/user_asm_kotlinRouter');v
+ var user_asm_kotlinRouter = require('./routes/user_asm_kotlinRouter');
 
 var app = express();
 
@@ -50,7 +50,7 @@ app.use('/userKotlin', user_asm_kotlinRouter);
 // Kết nối MongoDB
 //'mongodb://127.0.0.1:27017/project_cro102'
 //'mongodb+srv://Quangthong:Ec2zy4nb.zhX93z@cluster0.cypkh4s.mongodb.net/project_cro102' public
-mongoose.connect('mongodb+srv://quangthong2004:thong2004@cluster0.vpo8x.mongodb.net//user_kotlin', {
+mongoose.connect('mongodb+srv://quangthong2004:thong2004@cluster0.vpo8x.mongodb.net/user_kotlin', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
