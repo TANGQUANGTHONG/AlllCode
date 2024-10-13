@@ -6,18 +6,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 const mongoose = require('mongoose');
-// require('./model/product');
-// require('./model/API');
-// require('./model/user');
-// require('./model/CartModel');
-
 require('./model/user_asm_kotlin')
 
-// var usersRouter = require('./routes/usersRouter');
-// var CartRouter = require('./routes/CartRoutes');
-// var APIRouter = require('./routes/APIRouter');
-// var productRouter = require('./routes/productRouter');
-// var indexRouter = require('./routes/index');
+
  var user_asm_kotlinRouter = require('./routes/user_asm_kotlinRouter');v
 
 var app = express();
@@ -54,17 +45,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Đăng ký các routes
-// app.use('/users', usersRouter);
-// app.use('/case', APIRouter);
-// app.use('/product', productRouter);
-// app.use('/cart', CartRouter);
 app.use('/userKotlin', user_asm_kotlinRouter);
 
 // Kết nối MongoDB
 //'mongodb://127.0.0.1:27017/project_cro102'
 //'mongodb+srv://Quangthong:Ec2zy4nb.zhX93z@cluster0.cypkh4s.mongodb.net/project_cro102' public
-mongoose.connect('mongodb+srv://Quangthong:Ec2zy4nb.zhX93z@cluster0.cypkh4s.mongodb.net/project_cro102', {
+mongoose.connect('mongodb+srv://quangthong2004:thong2004@cluster0.vpo8x.mongodb.net//user_kotlin', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
